@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SCwiki</title>
+<style>
+body {
+      font-family: "Verdana", sans-serif;
+}
+</style>
+</head>
+<body>
+<h1>SC Wiki</h1>
+<p>This is the official-but-private and work-in-progress Screencuts Wikipedia. In this website, you can find all the information you would like to know about the Screencuts. Chiroland, Characters, Lore, Theories, etc.</p>
+<hr>
+<h3>Search</h3>
+<input id="search" type="text" placeholder="Search...">
+<button onclick=search()>Search</button>
+<hr>
+<div id="article"></div>
+<script>
+const article = document.getElementById("article")
+const query = document.getElementById("search").value
+let type = 0
+let element = 0
+
+const pages = [
+	"Blue Scratchy Colorser"
+];
+
+let matches = [];
+
+const found = [];
+
+function create(thetype) {
+  type = thetype;
+  element = document.createElement(type);
+}
+
+function add() {
+  article.appendChild(element);
+}
+
+function loadpage(page) {
+  article.innerHTML = ''
+  if (page == "Blue Scratchy Colorser") {
+  create("h2");
+  element.textContent = "Blue Scratchy Colorser"
+  add();
+  create("p");
+  console.log(element)
+  element.textContent = "Blue Scratchy Colorser is the mayor of Chiroland. He is one of the three founders of the state, then called Coroland.";
+  add();
+  }
+}
+function search() {
+  found.splice(0, found.length);
+  pages.forEach(page => {
+    matches = page.match(query);
+	console.log(matches)
+	console.log(matches.length)
+    if (matches) {
+	  found.push(page);
+	}
+  });
+  if (found.length === 1) {
+	loadpage(found[0]);
+  } else {
+	found.forEach(thatwasfound => {
+	create("button");
+	element.textContent = thatwasfound;
+	add();
+	});
+  }
+}
+</script>
+</body>
+</html>
